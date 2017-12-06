@@ -1,8 +1,11 @@
-<div className="td-filters">
-  <div className="btn-group">
+<div class="td-filters">
+  <div class="btn-group">
     <span>Quick Filters:</span>
-    {
-    filterButtons.map(this.getFilterItem.bind(this))
-    }
+    <button
+      type="button"
+      class="td-btn-filter"
+      *ngFor="let filterButton of filterButtons"
+    >{{ filterButton.label }}
+    </button>
   </div>
 </div>

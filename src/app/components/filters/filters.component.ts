@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
+  private filterButtons:{value:string,label:string}[] = [
+    {
+      value: 'ToDo',
+      label: 'To Do'
+    },
+    {
+      value: 'InProgress',
+      label: 'In Progress'
+    },
+    {
+      value: 'Closed',
+      label: 'Closed'
+    }
+  ];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
