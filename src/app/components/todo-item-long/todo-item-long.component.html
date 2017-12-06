@@ -1,0 +1,30 @@
+<div class="td-issue">
+  <div class="td-issue-content">
+    <div class="td-row">
+      <span class="td-type" title={{todo.priority}}>
+        <img [src]="getImagePriority()" alt="priority"/>
+      </span>
+      <div class="td-key">
+        <span title={{todo.id}} class="td-key-link">{{todo.id}}</span>
+      </div>
+      <div class="td-summary" title={{todo.title}}>
+        <span class="td-inner">{{todo.title}}</span>
+      </div>
+      <button
+        *ngIf="todo.status === 'ToDo'"
+        class= "td-btn-progress btn-md"
+      >
+      </button>
+    </div>
+    <div class="td-row td-row-bottom">
+      <div class="td-label" title={{todo.label}}>
+        <span class="td-inner">{{todo.label}}</span>
+      </div>
+      <div class="td-date" title={{todo.date}}>
+        <span class="td-inner">{{todo.date}}</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="td-grabber" [ngStyle]="{backgroundColor: getColorStatus(todo.status)}"></div>
+</div>

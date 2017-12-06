@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { TodoItemLongComponent } from './components/todo-item-long/todo-item-long.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FiltersComponent } from './components/filters/filters.component';
     HeaderComponent,
     TodoListComponent,
     LeftSideBarComponent,
-    FiltersComponent
+    FiltersComponent,
+    TodoItemLongComponent
   ],
   imports: [
     BrowserModule,
