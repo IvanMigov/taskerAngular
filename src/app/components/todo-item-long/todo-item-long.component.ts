@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Todo} from '../../shared/todo.model';
 
 @Component({
   selector: 'app-todo-item-long',
@@ -6,7 +7,7 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./todo-item-long.component.css']
 })
 export class TodoItemLongComponent implements OnInit {
-  @Input() todo: {id: number, date: string, label: string, status: string, priority: string, toDoStatus: string, title: string, description: string};
+  @Input() todo: Todo;
   constructor() { }
 
   ngOnInit() {

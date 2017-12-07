@@ -9,6 +9,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { TodoItemLongComponent } from './components/todo-item-long/todo-item-long.component';
+import { TodosService } from './shared/todos.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { TodoItemLongComponent } from './components/todo-item-long/todo-item-lon
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [TodosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
