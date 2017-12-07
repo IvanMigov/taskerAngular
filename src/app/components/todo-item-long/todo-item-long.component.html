@@ -1,4 +1,8 @@
-<div class="td-issue">
+<div
+  class="td-issue"
+  [routerLink]="[todo.id]"
+  routerLinkActive="td-active"
+>
   <div class="td-issue-content">
     <div class="td-row">
       <span class="td-type" title={{todo.priority}}>

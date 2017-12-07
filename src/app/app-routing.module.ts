@@ -1,34 +1,27 @@
-// import { NgModule } from '@angular/core';
-// import { Routes, RouterModule } from '@angular/router';
-//
-//
-//
-// const appRoutes: Routes = [
-//   { path: '', component: HomeComponent },
-//   { path: 'users', component: UsersComponent, children: [
-//     { path: ':id/:name', component: UserComponent }
-//   ] },
-//   {
-//     path: 'servers',
-//     // canActivate: [AuthGuard],
-//     canActivateChild: [AuthGuard],
-//     component: ServersComponent,
-//     children: [
-//     { path: ':id', component: ServerComponent, resolve: {server: ServerResolver} },
-//     { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard] }
-//   ] },
-//   // { path: 'not-found', component: PageNotFoundComponent },
-//   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
-//   { path: '**', redirectTo: '/not-found' }
-// ];
-//
-// @NgModule({
-//   imports: [
-//     // RouterModule.forRoot(appRoutes, {useHash: true})
-//     RouterModule.forRoot(appRoutes)
-//   ],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule {
-//
-// }
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ContentMainComponent } from './components/content-main/content-main.component';
+import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
+
+
+
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/todos', pathMatch: 'full' },
+  { path: 'todos/0', redirectTo: '/todos', pathMatch: 'full' },
+  {
+    path: 'todos', component: ContentMainComponent,children: [
+      {path: ':id', component: EditTodoComponent}
+    ]
+  }
+
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {
+
+}
