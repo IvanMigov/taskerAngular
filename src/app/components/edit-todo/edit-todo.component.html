@@ -1,2 +1,8 @@
-<app-todo-form *ngIf="todo.id" [todo]="todo" [formClass]="formClass"></app-todo-form>
+<app-todo-form
+  *ngIf="todo.id"
+  [todo]="todo"
+  [formClass]="formClass"
+  (saveTodo)="onSaveTodo($event)"
+  (closeTodo)="onCloseTodo()"
+></app-todo-form>
 <app-loader *ngIf="!todo.id"></app-loader>

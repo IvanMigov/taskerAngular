@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -19,7 +19,8 @@ export class EditTodoComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private route: ActivatedRoute,
-              private todosService: TodosService) { }
+              private todosService: TodosService,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -39,4 +40,12 @@ export class EditTodoComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+  onSaveTodo(todoData) {
+    this.todosService.saveToDo({...this.todo,...todoData})
+  }
+  onCloseTodo() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+
+  }
+
 }

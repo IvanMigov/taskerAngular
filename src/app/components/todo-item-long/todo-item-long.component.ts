@@ -13,7 +13,18 @@ export class TodoItemLongComponent implements OnInit {
   ngOnInit() {
   }
   getImagePriority(){
-    return "./src/images/status/normal.png"
+    let logoImg;
+    switch (this.todo.priority) {
+      case  'low':
+        logoImg = './src/images/status/minor.svg';
+        break;
+      case  'high':
+        logoImg = './src/images/status/major.svg';
+        break;
+      default:
+        logoImg = './src/images/status/normal.png';
+    }
+    return logoImg;
   }
   getColorStatus(status){
     let backgroundColor = '#bfe4ff';

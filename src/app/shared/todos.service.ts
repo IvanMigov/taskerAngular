@@ -40,10 +40,18 @@ export class TodosService {
       )
       .subscribe(
         (todos: Todo[]) => {
-          console.log("todos",todos);
           this.todosList = todos;
           this.todosChanged.next(this.todosList);
           this.currentTodoChanged.next(this.getCurrentTodo());
+        }
+      );
+  }
+
+  saveToDo(todo:Todo) {
+    this.http.patch(`${requestUrl}/${todo.id}`,todo)
+      .subscribe(
+        (response: Response) => {
+          this.fetchTodos();
         }
       );
   }
@@ -56,7 +64,6 @@ export class TodosService {
   }
 
   setCurrentTodoId(id:number) {
-    console.log('setCurrentTodo');
     this.curretTodoId = id;
   }
 
