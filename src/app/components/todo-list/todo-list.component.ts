@@ -11,7 +11,7 @@ import { Todo } from '../../shared/todo.model';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
   todos:Todo[] = [];
   subscription: Subscription;
   // todos = [

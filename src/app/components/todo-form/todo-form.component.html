@@ -1,0 +1,74 @@
+<div [class]="formClass">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <div class="td-row-id">
+      <span class="td-data-id">{{todo.id}}</span>
+      <span class="td-data-date">{{todo.date}}</span>
+      <span class="td-detail-close-icon" > </span>
+
+    </div>
+    <div class="td-data-title">
+      <div>
+        <input
+          formControlName="title"
+          class="form-control"
+          name="title"
+          type="text"
+          placeholder="brief description"
+        />
+      </div>
+    </div>
+    <div class="td-data-row">
+      <label class="">Status</label>
+      <div>
+        <select
+          name="status"
+          class="form-control"
+          formControlName="status"
+        >
+          <option [value]="45" ></option>
+        </select>
+      </div>
+    </div>
+    <div class="td-data-row">
+      <label>Priority</label>
+      <div>
+        <select
+          name="priority"
+          class="form-control"
+          formControlName="priority"
+        >
+          <option [value]="36" ></option>
+        </select>
+      </div>
+    </div>
+    <div class="td-data-row">
+      <label>Label</label>
+      <div>
+        <input
+          class="form-control"
+          name="label"
+          type="text"
+          placeholder="label"
+          formControlName="label"
+        />
+      </div>
+    </div>
+    <div class="td-data-description">
+      <label>Description</label>
+      <div>
+        <textarea
+          name="description"
+          class="form-control"
+          formControlName="description"
+        ></textarea>
+      </div>
+    </div>
+
+
+    <div>
+      <button class="btn btn-success" type="submit" [disabled]="!todoForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

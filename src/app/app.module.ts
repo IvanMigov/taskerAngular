@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import { TodosService } from './shared/todos.service';
 import { ContentMainComponent } from './components/content-main/content-main.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,13 @@ import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
     FiltersComponent,
     TodoItemLongComponent,
     ContentMainComponent,
-    EditTodoComponent
+    EditTodoComponent,
+    TodoFormComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],

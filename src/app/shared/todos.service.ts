@@ -9,13 +9,12 @@ const requestUrl = 'http://localhost:3004/todos';
 @Injectable()
 export class TodosService {
   todosChanged = new Subject<Todo[]>();
+  currentTodoChanged = new Subject<Todo>();
 
   private todosList: Todo[] = [];
+  private curretTodoId: number;
   constructor(private http: Http) {}
 
-  // storeRecipes() {
-  //   return this.http.put('https://ng-recipe-book.firebaseio.com/recipes.json', this.recipeService.getRecipes());
-  // }
 
   fetchTodos() {
     this.http.get(requestUrl)
@@ -44,12 +43,21 @@ export class TodosService {
           console.log("todos",todos);
           this.todosList = todos;
           this.todosChanged.next(this.todosList);
+          this.currentTodoChanged.next(this.getCurrentTodo());
         }
       );
   }
   getTodos() {
-    console.log('getTodos',this.todosList);
     return this.todosList;
+  }
+
+  getCurrentTodo() {
+    return (this.todosList.find(todo => todo.id === this.curretTodoId)) || new Todo();
+  }
+
+  setCurrentTodoId(id:number) {
+    console.log('setCurrentTodo');
+    this.curretTodoId = id;
   }
 
 
