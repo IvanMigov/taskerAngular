@@ -25,7 +25,10 @@
           class="form-control"
           formControlName="status"
         >
-          <option [value]="45" ></option>
+          <option
+            *ngFor="let status of statusList"
+            [value]="status"
+          >{{status}}</option>
         </select>
       </div>
     </div>
@@ -37,7 +40,10 @@
           class="form-control"
           formControlName="priority"
         >
-          <option [value]="36" ></option>
+          <option
+            *ngFor="let priority of priorityList"
+            [value]="priority"
+          >{{priority}}</option>
         </select>
       </div>
     </div>

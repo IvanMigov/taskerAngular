@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import {Todo} from '../../shared/todo.model';
@@ -8,21 +8,28 @@ import {Todo} from '../../shared/todo.model';
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.css']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent implements OnInit, OnChanges {
   @Input() todo: Todo;
   @Input() formClass: string;
   todoForm: FormGroup;
+  statusList = ['ToDo', 'InProgress', 'Closed'];
+  priorityList = ['low', 'normal', 'high'];
 
   constructor() { }
-
-  ngOnInit() {
+  private initForm() {
     this.todoForm = new FormGroup({
-      'label': new FormControl(this.todo.label, Validators.required),
-      'status': new FormControl(this.todo.status, Validators.required),
-      'priority': new FormControl(this.todo.priority, Validators.required),
+      'label': new FormControl(this.todo.label),
+      'status': new FormControl(this.todo.status),
+      'priority': new FormControl(this.todo.priority),
       'title': new FormControl(this.todo.title, Validators.required),
-      'description': new FormControl(this.todo.description, Validators.required)
+      'description': new FormControl(this.todo.description)
     });
+  }
+  ngOnInit() {
+    this.initForm();
+  }
+  ngOnChanges() {
+    this.initForm();
   }
   onSubmit() {
 
