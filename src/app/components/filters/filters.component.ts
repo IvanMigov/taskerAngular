@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TodosService} from "../../shared/todos.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-filters',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
+  subscription: Subscription[];
+  filters:{};
   filterButtons:{value:string,label:string}[] = [
     {
       value: 'ToDo',
@@ -20,8 +24,20 @@ export class FiltersComponent implements OnInit {
       label: 'Closed'
     }
   ];
-  constructor() {}
+  constructor(private todosService: TodosService) { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    let filterSubscription = this.todosService.filtersChanged
+      .subscribe(
+        (filters: {}) => {
+          this.filters = filters;
+        }
+      );
+    this.todosService.fetchFiltersSet();
+    this.filters = this.todosService.getFiltersSet();
+    this.subscription = [filterSubscription]
+  }
+  ngOnDestroy() {
+    this.subscription.forEach(sunscription => sunscription.unsubscribe())
+  }
 }

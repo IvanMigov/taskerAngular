@@ -5,6 +5,8 @@
       type="button"
       class="td-btn-filter"
       *ngFor="let filterButton of filterButtons"
+      [ngClass]="{active: filters[filterButton.value]}"
+      (click)="this.todosService.triggerFilter(filterButton.value)"
     >{{ filterButton.label }}
     </button>
   </div>

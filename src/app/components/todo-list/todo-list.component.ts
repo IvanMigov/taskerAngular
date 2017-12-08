@@ -13,7 +13,8 @@ import { Todo } from '../../shared/todo.model';
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   todos:Todo[] = [];
-  subscription: Subscription;
+  filters:{};
+  subscription: Subscription[];
   // todos = [
   //   {
   //     id: 250,
@@ -49,16 +50,28 @@ export class TodoListComponent implements OnInit, OnDestroy {
   constructor(private todosService: TodosService) { }
 
   ngOnInit() {
-    this.subscription = this.todosService.todosChanged
+    let todosSubscription = this.todosService.todosChanged
       .subscribe(
         (todos: Todo[]) => {
-          this.todos = todos;
+          this.todos = this.applyFilters(todos);
+        }
+      );
+    let filterSubscription = this.todosService.filtersChanged
+      .subscribe(
+        (filters: {}) => {
+          this.filters = filters;
+          this.todos = this.applyFilters(this.todosService.getTodos());
         }
       );
     this.todosService.fetchTodos();
-    this.todos = this.todosService.getTodos();
+    this.todos = this.applyFilters(this.todosService.getTodos());
+    this.filters = this.todosService.getFiltersSet();
+    this.subscription = [todosSubscription,filterSubscription]
+  }
+  applyFilters(todos: Todo[]):Todo[]{
+    return todos.filter(todo => this.filters[todo.status])
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription.forEach(sunscription => sunscription.unsubscribe())
   }
 }

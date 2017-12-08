@@ -11,10 +11,12 @@ export class TodosService {
   todosChanged = new Subject<Todo[]>();
   currentTodoChanged = new Subject<Todo>();
   showModalChanged = new Subject<boolean>();
+  filtersChanged = new Subject<{}>();
 
   private todosList: Todo[] = [];
   private curretTodoId: number;
   private showModal = false;
+  private filters = {};
   constructor(private http: Http) {}
 
   showModalDialog(){
@@ -83,6 +85,18 @@ export class TodosService {
   setCurrentTodoId(id:number) {
     this.curretTodoId = id;
   }
-
-
+  getFiltersSet() {
+    return this.filters;
+  }
+  fetchFiltersSet() {
+  this.filters = JSON.parse(localStorage.getItem('CHANGE_FILTERS_SET')) || {'ToDo':true};
+  this.filtersChanged.next(this.filters);
+}
+  triggerFilter(key){
+    let newFilter = {};
+    newFilter[key] = !this.filters[key];
+    this.filters = {...this.filters,...newFilter};
+    this.filtersChanged.next(this.filters);
+    localStorage.setItem('CHANGE_FILTERS_SET',JSON.stringify(this.filters));
+  }
 }
