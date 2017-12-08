@@ -1,5 +1,7 @@
 body{    overflow: hidden;}
 app-todo-item-long{outline: none}
+.td-modal{position: fixed;  top: 0;  bottom: 0;  left: 0;  right: 0;  background-color: rgba(0,0,0,0.3);  padding: 50px;  z-index: 1050;}
+.td-modal-content{display: flex;justify-content: center;z-index: 1051}
 /*===================================To_Do============================= */
 .todo-list{  padding: 2px 0 10px 10px;  width: 100%;overflow-y: auto;margin-right: 5px }
 .td-issue{  min-width: 350px;  }

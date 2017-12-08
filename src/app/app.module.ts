@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { NewTodoComponent } from './components/new-todo/new-todo.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     ContentMainComponent,
     EditTodoComponent,
     TodoFormComponent,
-    LoaderComponent
+    LoaderComponent,
+    NewTodoComponent
   ],
   imports: [
     BrowserModule,

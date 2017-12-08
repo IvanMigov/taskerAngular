@@ -1,0 +1,11 @@
+<div class ="td-modal" *ngIf="showModal">
+  <div class="td-modal-content">
+    <app-todo-form
+      [todo]="todo"
+      [formClass]="formClass"
+      (saveTodo)="onSaveTodo($event)"
+      (closeTodo)="onCloseTodo()"
+    ></app-todo-form>
+  </div>
+
+</div>

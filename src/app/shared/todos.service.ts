@@ -10,12 +10,24 @@ const requestUrl = 'http://localhost:3004/todos';
 export class TodosService {
   todosChanged = new Subject<Todo[]>();
   currentTodoChanged = new Subject<Todo>();
+  showModalChanged = new Subject<boolean>();
 
   private todosList: Todo[] = [];
   private curretTodoId: number;
+  private showModal = false;
   constructor(private http: Http) {}
 
-
+  showModalDialog(){
+    this.showModal = true;
+    this.showModalChanged.next(true);
+  }
+  hideModalDialog(){
+    this.showModal = false;
+    this.showModalChanged.next(false);
+  }
+  getModalDialogState(){
+    return this.showModal;
+  }
   fetchTodos() {
     this.http.get(requestUrl)
       .map(
@@ -46,9 +58,16 @@ export class TodosService {
         }
       );
   }
-
   saveToDo(todo:Todo) {
     this.http.patch(`${requestUrl}/${todo.id}`,todo)
+      .subscribe(
+        (response: Response) => {
+          this.fetchTodos();
+        }
+      );
+  }
+  saveNewToDo(todo:Todo) {
+    this.http.post(`${requestUrl}`,todo)
       .subscribe(
         (response: Response) => {
           this.fetchTodos();
@@ -58,11 +77,9 @@ export class TodosService {
   getTodos() {
     return this.todosList;
   }
-
   getCurrentTodo() {
     return (this.todosList.find(todo => todo.id === this.curretTodoId)) || new Todo();
   }
-
   setCurrentTodoId(id:number) {
     this.curretTodoId = id;
   }
